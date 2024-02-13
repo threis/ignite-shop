@@ -2,7 +2,10 @@ import { z } from 'zod'
 
 const publicEnvScheme = z.object({
   NEXT_PUBLIC_KEY_STRIPE: z.string(),
+  NEXT_PUBLIC_APP_URL: z.string().url(),
 })
+
+console.log(process.env)
 
 const parsedEnv = publicEnvScheme.safeParse(process.env)
 

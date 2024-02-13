@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import Stripe from 'stripe'
 
 import { Carousel } from '@/components/carousel'
@@ -31,9 +32,9 @@ export default async function Home() {
       {products &&
         products.map((product) => {
           return (
-            <a
+            <Link
               key={product.id}
-              href=""
+              href={`/product/${product.id}`}
               className="bg-gradient-to-t from-grad-purple to-grad-green rounded-lg cursor-pointer relative flex items-center justify-center overflow-hidden group keen-slider__slide"
             >
               <Image
@@ -49,7 +50,7 @@ export default async function Home() {
                   {product.price}
                 </span>
               </footer>
-            </a>
+            </Link>
           )
         })}
     </Carousel>
