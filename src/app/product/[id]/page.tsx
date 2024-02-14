@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Suspense } from 'react'
 import Stripe from 'stripe'
 
-import { CheckoutButton } from '@/components/checkout-button'
+import { AddProductInCartButton } from '@/components/add-product-in-cart'
 import { stripe } from '@/lib/stripe'
 
 interface ProductProps {
@@ -21,7 +21,8 @@ async function getProductById(productId: string) {
     id: product.id,
     name: product.name,
     description: product.description,
-    price: new Intl.NumberFormat('pt-BR', {
+    price: price.unit_amount,
+    formattedPrice: new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
     }).format((price.unit_amount || 0) / 100),
@@ -52,7 +53,7 @@ export default async function Product({ params }: ProductProps) {
   const product = await getProductById(id)
 
   return (
-    <main className="grid grid-cols-2 items-stretch gap-16 max-w-[1180px] mx-auto mt-8">
+    <main className="grid grid-cols-2 items-stretch gap-16 max-w-[1180px] mx-auto">
       <div className="w-full h-[656px] max-w-[576px] bg-gradient-to-t from-grad-purple to-grad-green rounded-lg p-1 flex items-center justify-center">
         <Image
           className="object-cover"
@@ -65,15 +66,21 @@ export default async function Product({ params }: ProductProps) {
       <div className="flex flex-col">
         <h1 className="text-2xl text-gray300">{product.name}</h1>
         <span className="mt-4 block text-2xl text-green300">
-          {product.price}
+          {product.formattedPrice}
         </span>
         <p className="mt-10 text-md leading-[160%] text-gray300">
           {product.description}
         </p>
         <Suspense fallback={false}>
-          <CheckoutButton
-            // onCheckout={onCheckout}
-            priceId={product.defaultPriceId}
+          <AddProductInCartButton
+            product={{
+              productId: product.id,
+              quantity: 1,
+              price: product.price || 0,
+              name: product.name,
+              imageUrl: product.imageUrl,
+              priceId: product.defaultPriceId,
+            }}
           />
         </Suspense>
       </div>
