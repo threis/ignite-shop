@@ -1,15 +1,15 @@
 import { NextRequest } from 'next/server'
 import { z } from 'zod'
 
+import { env } from '@/env'
 import { stripe } from '@/lib/stripe'
-import { publicEnv } from '@/public-env'
 
 export async function POST(request: NextRequest) {
   const { searchParams } = request.nextUrl
   const priceId = z.string().parse(searchParams.get('priceId'))
 
-  const successUrl = `${publicEnv.NEXT_PUBLIC_APP_URL}/success`
-  const cancelUrl = `${publicEnv.NEXT_PUBLIC_APP_URL}`
+  const successUrl = `${env.NEXT_PUBLIC_APP_URL}/success?session_id={CHECKOUT_SESSION_ID}`
+  const cancelUrl = `${env.NEXT_PUBLIC_APP_URL}`
 
   const checkoutUrl = await stripe.checkout.sessions.create({
     success_url: successUrl,

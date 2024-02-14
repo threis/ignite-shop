@@ -1,8 +1,8 @@
 import Stripe from 'stripe'
 
-import { secretEnv } from '@/secret-env'
+import { env } from '@/env'
 
-export const stripe = new Stripe(secretEnv.SECRET_KEY_STRIPE, {
+export const stripe = new Stripe(env.SECRET_KEY_STRIPE, {
   apiVersion: '2023-10-16',
   appInfo: {
     name: 'Ignite Shop',

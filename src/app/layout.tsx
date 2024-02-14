@@ -8,7 +8,10 @@ import logoImg from '@/assets/logo.svg'
 const roboto = Roboto({ weight: ['400', '700'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'IgniteShop',
+  title: {
+    template: '%s | IgniteShop',
+    default: 'IgniteShop',
+  },
 }
 
 export default function RootLayout({

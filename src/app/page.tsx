@@ -1,9 +1,14 @@
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import Stripe from 'stripe'
 
 import { Carousel } from '@/components/carousel'
 import { stripe } from '@/lib/stripe'
+
+export const metadata: Metadata = {
+  title: 'Home',
+}
 
 async function getProducts() {
   const response = await stripe.products.list({

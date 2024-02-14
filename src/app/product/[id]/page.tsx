@@ -10,6 +10,7 @@ interface ProductProps {
     id: string
   }
 }
+
 async function getProductById(productId: string) {
   const product = await stripe.products.retrieve(productId, {
     expand: ['default_price'],
@@ -35,6 +36,14 @@ export async function generateStaticParams() {
   return response.data.map((product) => {
     return { id: product.id }
   })
+}
+export async function generateMetadata({ params }: ProductProps) {
+  const { id } = params
+  const { name } = await getProductById(id)
+
+  return {
+    title: name,
+  }
 }
 
 export default async function Product({ params }: ProductProps) {

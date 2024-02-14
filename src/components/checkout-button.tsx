@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation'
 
+import { api } from '@/lib/fetch'
+
 export interface CheckoutButtonProps {
   priceId: string
 }
@@ -10,12 +12,9 @@ export function CheckoutButton({ priceId }: CheckoutButtonProps) {
   const router = useRouter()
 
   async function handleCheckout(priceId: string) {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/checkout?priceId=${priceId}`,
-      {
-        method: 'POST',
-      },
-    )
+    const response = await api(`/checkout?priceId=${priceId}`, {
+      method: 'POST',
+    })
     const { url } = await response.json()
 
     router.push(url)
