@@ -51,7 +51,7 @@ export function Header() {
 
   return (
     <header
-      className={`py-8 w-full max-w-[1080px] mx-auto flex items-center ${pathname === '/success' ? 'justify-center' : 'justify-between'}`}
+      className={`mx-auto flex w-full max-w-[1080px] items-center py-8 ${pathname === '/success' ? 'justify-center' : 'justify-between'}`}
     >
       <Image src={logoImg} alt="" width={130} height={60} />
 
@@ -61,10 +61,10 @@ export function Header() {
             <button
               disabled={!amountItems}
               type="button"
-              className="size-12 bg-gray800 flex items-center justify-center rounded-md relative disabled:cursor-auto"
+              className="relative flex size-12 items-center justify-center rounded-md bg-gray800 disabled:cursor-auto"
             >
               {!!amountItems && (
-                <span className="absolute -top-2 -right-2 size-6 text-white bg-green500 rounded-full flex items-center justify-center border-[3px] border-gray900 text-sm font-bold">
+                <span className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full border-[3px] border-gray900 bg-green500 text-sm font-bold text-white">
                   {amountItems}
                 </span>
               )}
@@ -76,22 +76,22 @@ export function Header() {
           </Dialog.Trigger>
           <Dialog.Portal>
             <Dialog.Content asChild>
-              <aside className="h-screen w-[480px] fixed z-10 right-0 top-0 bottom-0 bg-gray800 flex flex-col pt-[72px] px-12">
+              <aside className="fixed bottom-0 right-0 top-0 z-10 flex h-screen w-[480px] flex-col bg-gray800 px-12 pt-[72px]">
                 <Dialog.Close asChild>
                   <button className="absolute right-6 top-6">
                     <X className="size-6 font-bold text-gray500" />
                   </button>
                 </Dialog.Close>
 
-                <h2 className="font-bold text-lg text-gray100 leading-[160%]">
+                <h2 className="text-lg font-bold leading-[160%] text-gray100">
                   Sacola de compras
                 </h2>
-                <div className="flex flex-col mt-8 gap-6">
+                <div className="mt-8 flex flex-col gap-6">
                   {items &&
                     items.map((item) => {
                       return (
                         <div className="flex gap-5" key={item.productId}>
-                          <div className="w-[100px] h-[100px] bg-gradient-to-t from-grad-purple to-grad-green rounded-lg">
+                          <div className="h-[100px] w-[100px] rounded-lg bg-gradient-to-t from-grad-purple to-grad-green">
                             <Image
                               src={item.imageUrl}
                               width={100}
@@ -100,12 +100,12 @@ export function Header() {
                             />
                           </div>
                           <div className="flex flex-col items-start ">
-                            <p className="text-gray300 leading-[160%] text-md">
+                            <p className="text-md leading-[160%] text-gray300">
                               {item.quantity > 1
                                 ? `(${item.quantity}x) ${item.name}`
                                 : item.name}
                             </p>
-                            <span className="text-gray100 leading-[160%] text-md font-bold">
+                            <span className="text-md font-bold leading-[160%] text-gray100">
                               {new Intl.NumberFormat('pt-BR', {
                                 style: 'currency',
                                 currency: 'BRL',
@@ -113,7 +113,7 @@ export function Header() {
                             </span>
                             <button
                               onClick={() => handleRemoveItem(item.productId)}
-                              className="text-green500 font-bold leading-[160%] mt-0.5 hover:text-green300"
+                              className="mt-0.5 font-bold leading-[160%] text-green500 hover:text-green300"
                               type="button"
                             >
                               Remover
@@ -128,15 +128,15 @@ export function Header() {
                     <span className="leading-[160%] text-gray100">
                       Quantidade
                     </span>
-                    <span className="leading-[160%] text-md text-gray100">
+                    <span className="text-md leading-[160%] text-gray100">
                       {amountItems} itens
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="leading-[160%] text-gray100 font-bold text-md">
+                    <span className="text-md font-bold leading-[160%] text-gray100">
                       Valor total
                     </span>
-                    <span className="leading-[160%] text-gray100 font-bold text-xl">
+                    <span className="text-xl font-bold leading-[160%] text-gray100">
                       {totalPriceFormatted}
                     </span>
                   </div>
@@ -152,7 +152,7 @@ export function Header() {
                       }),
                     )
                   }
-                  className="bg-green500 text-white px-8 py-5 rounded-lg hover:bg-green300 font-bold my-12"
+                  className="my-12 rounded-lg bg-green500 px-8 py-5 font-bold text-white hover:bg-green300"
                   type="button"
                 >
                   Finalizar compra

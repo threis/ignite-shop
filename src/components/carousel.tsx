@@ -17,7 +17,7 @@ export function Carousel({ children }: CarouselProps) {
   })
   return (
     <div
-      className="flex max-w-home w-full ml-auto min-h-[656px] keen-slider"
+      className="keen-slider ml-auto flex min-h-[656px] w-full max-w-home"
       ref={sliderRef}
     >
       {children}

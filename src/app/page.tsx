@@ -41,7 +41,7 @@ export default async function Home() {
             <Link
               key={product.id}
               href={`/product/${product.id}`}
-              className="bg-gradient-to-t from-grad-purple to-grad-green rounded-lg cursor-pointer relative flex items-center justify-center overflow-hidden group keen-slider__slide"
+              className="keen-slider__slide group relative flex cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-gradient-to-t from-grad-purple to-grad-green"
             >
               <Image
                 src={product.imageUrl}

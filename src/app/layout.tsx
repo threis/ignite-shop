@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="pt-BR" className={roboto.className}>
       <body className="bg-gray900 text-gray100 antialiased">
         <CartProvider>
-          <div className="flex flex-col min-h-screen items-start justify-center relative">
+          <div className="relative flex min-h-screen flex-col items-start justify-center">
             <Header />
             {children}
           </div>

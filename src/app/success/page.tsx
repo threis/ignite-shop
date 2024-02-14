@@ -48,13 +48,13 @@ export default async function Success({ searchParams }: SuccessProps) {
   const session = await getCheckoutSession(sessionId)
 
   return (
-    <main className="flex flex-col items-center justify-center mx-auto h-[656px]">
-      <div className="flex -space-x-10 mb-6">
+    <main className="mx-auto flex h-[656px] flex-col items-center justify-center">
+      <div className="mb-6 flex -space-x-10">
         {session.imagesUrlList.map((image, index) => {
           return (
             <div
               key={index}
-              className={`w-full max-w-[140px] bg-gradient-to-t from-grad-purple to-grad-green rounded-full p-1 flex items-center justify-center shadow-md`}
+              className={`flex w-full max-w-[140px] items-center justify-center rounded-full bg-gradient-to-t from-grad-purple to-grad-green p-1 shadow-md`}
             >
               <Image
                 className="object-cover"
@@ -68,14 +68,14 @@ export default async function Success({ searchParams }: SuccessProps) {
         })}
       </div>
       <h1 className="text-2xl text-gray100">Compra efetuada!</h1>
-      <p className="text-xl text-gray300 max-w-[560px] text-center mt-8">
+      <p className="mt-8 max-w-[560px] text-center text-xl text-gray300">
         Uhuul <strong className="font-bold">{session.customerName}</strong>, sua
         compra de {session.quantity}{' '}
         {session.quantity === 1 ? 'camiseta' : 'camisetas'} já está a caminho da
         sua casa.
       </p>
       <Link
-        className="mt-20 block text-lg text-green500 font-bold hover:text-green300"
+        className="mt-20 block text-lg font-bold text-green500 hover:text-green300"
         href="/"
       >
         Voltar ao catálogo

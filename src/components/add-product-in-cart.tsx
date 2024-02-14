@@ -30,7 +30,7 @@ export function AddProductInCartButton({
 
   return (
     <button
-      className="mt-auto bg-green500 border-none text-white rounded-lg p-5 cursor-pointer text-md font-bold hover:bg-green300"
+      className="mt-auto cursor-pointer rounded-lg border-none bg-green500 p-5 text-md font-bold text-white hover:bg-green300"
       type="button"
       onClick={() => handleAddProductInCart({ product })}
     >

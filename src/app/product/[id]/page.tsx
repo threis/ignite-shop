@@ -53,8 +53,8 @@ export default async function Product({ params }: ProductProps) {
   const product = await getProductById(id)
 
   return (
-    <main className="grid grid-cols-2 items-stretch gap-16 max-w-[1180px] mx-auto">
-      <div className="w-full h-[656px] max-w-[576px] bg-gradient-to-t from-grad-purple to-grad-green rounded-lg p-1 flex items-center justify-center">
+    <main className="mx-auto grid max-w-[1180px] grid-cols-2 items-stretch gap-16">
+      <div className="flex h-[656px] w-full max-w-[576px] items-center justify-center rounded-lg bg-gradient-to-t from-grad-purple to-grad-green p-1">
         <Image
           className="object-cover"
           src={product.imageUrl}
